@@ -5,6 +5,7 @@ import { Cat } from './entities/cat.entity';
 @Injectable()
 export class CatsService {
   private readonly cats: Cat[] = [];
+
   create(cat: CreateCatDto) {
     this.cats.push({ ...cat, age: 0 });
   }
