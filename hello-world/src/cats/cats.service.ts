@@ -7,7 +7,10 @@ export class CatsService {
   private readonly cats: Cat[] = [];
 
   create(cat: CreateCatDto) {
-    this.cats.push({ ...cat, age: 0 });
+    const newCat = { ...cat, age: 0 };
+    this.cats.push(newCat);
+
+    return newCat;
   }
 
   findAll(): Cat[] {
