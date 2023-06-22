@@ -26,8 +26,7 @@ export class CatsService {
   }
 
   findOne(id: string): Cat {
-    const res = this.cats.find((cat) => cat.id === id);
-    return res;
+    return this.cats.find((cat) => cat.id === id);
   }
 
   update(id: string, catUpdate: CreateCatDto) {
@@ -43,5 +42,12 @@ export class CatsService {
     });
 
     return updatedCat;
+  }
+
+  remove(id: string) {
+    const removedCat = this.cats.find((cat) => cat.id === id);
+    this.cats = this.cats.filter((cat) => cat.id !== id);
+
+    return removedCat;
   }
 }
