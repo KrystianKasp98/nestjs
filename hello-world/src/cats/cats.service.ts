@@ -5,7 +5,14 @@ import { Cat } from './entities/cat.entity';
 
 @Injectable()
 export class CatsService {
-  private readonly cats: Cat[] = [];
+  private readonly cats: Cat[] = [
+    {
+      name: 'test',
+      breed: 'default',
+      age: 0,
+      id: '6pglj7opxbe',
+    },
+  ];
 
   create(cat: CreateCatDto) {
     const newCat = { ...cat, age: 0, id: process() };
@@ -16,5 +23,10 @@ export class CatsService {
 
   findAll(): Cat[] {
     return this.cats;
+  }
+
+  findOne(id: string): Cat {
+    const res = this.cats.find((cat) => cat.id === id);
+    return res;
   }
 }
