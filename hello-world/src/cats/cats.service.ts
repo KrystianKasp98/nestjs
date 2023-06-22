@@ -5,7 +5,7 @@ import { Cat } from './entities/cat.entity';
 
 @Injectable()
 export class CatsService {
-  private readonly cats: Cat[] = [
+  private cats: Cat[] = [
     {
       name: 'test',
       breed: 'default',
@@ -28,5 +28,20 @@ export class CatsService {
   findOne(id: string): Cat {
     const res = this.cats.find((cat) => cat.id === id);
     return res;
+  }
+
+  update(id: string, catUpdate: CreateCatDto) {
+    let updatedCat = null;
+
+    this.cats = this.cats.map((cat) => {
+      if (cat.id === id) {
+        updatedCat = { ...catUpdate, id: cat.id, age: cat.age };
+        return updatedCat;
+      }
+
+      return cat;
+    });
+
+    return updatedCat;
   }
 }

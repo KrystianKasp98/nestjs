@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './entities/cat.entity';
@@ -20,5 +20,10 @@ export class CatsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.catsService.findOne(id);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateCatDto: CreateCatDto) {
+    return this.catsService.update(id, updateCatDto);
   }
 }
